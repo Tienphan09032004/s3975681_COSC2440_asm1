@@ -8,7 +8,7 @@ public class CustomerCreator {
         this.view = view;
     }
 
-    public void eventLoop() {
+    public void createCustomer(CustomerManager customerManager) {
         String answer = "Y";
         Scanner scanner = DataInput.getDataInput().getScanner();
         while (answer.equalsIgnoreCase("Y")) {
@@ -16,19 +16,21 @@ public class CustomerCreator {
             String id = data.get(CustomerView.CUSTOMER_ID);
             String name = data.get(CustomerView.FULL_NAME);
 
-            System.out.println("Nhập vai trò của bạn (CardHolder hoặc Independent):");
+            System.out.println("Enter role (CardHolder or Independent):");
             String role = scanner.nextLine();
 
-            Customer customer = null; // Khởi tạo customer ở đây
+            Customer customer = null;
 
             if (role.equals("CardHolder")) {
                 customer = new CardHolder(id, name);
             } else if (role.equals("Independent")) {
                 customer = new Independent(id, name);
             } else {
-                System.out.println("Vui lòng nhập lại vai trò (CardHolder hoặc Independent).");
-                continue; // Tiếp tục vòng lặp nếu vai trò không hợp lệ
+                System.out.println("Enter role (CardHolder or Independent): ");
+                continue;
             }
+
+            customerManager.addCustomer(customer);
 
             view.display(customer);
 

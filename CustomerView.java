@@ -21,16 +21,16 @@ class CustomerViewText extends CustomerView {
 
     @Override
     public void display(Customer customer) {
-        System.out.println("Begin console view:");
+        System.out.println("----------------------------");
         System.out.println("Customer ID: " + customer.getId());
         System.out.println("Customer Name: " + customer.getFullName());
-        System.out.println("End console view:");
+        System.out.println("----------------------------");
         System.out.println();
     }
 
     @Override
     public Map<String, String> displayNewCustomerForm() {
-        Scanner scanner = new Scanner(System.in); // Sử dụng Scanner để nhận dữ liệu từ bàn phím
+        Scanner scanner = new Scanner(System.in);
         Map<String, String> data = new HashMap<>();
         System.out.println("New Customer Form: ");
         System.out.println("Enter customer id: ");
