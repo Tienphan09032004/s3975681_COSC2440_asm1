@@ -12,18 +12,7 @@ public class Claim {
     private double claimAmount;
     private ReceiveBankingInfo receiveBankingInfo;
 
-    public Claim(String id, Date claimDate, String insuredPeople, String cardNumber, Date examDate, ArrayList<String> documents, double claimAmount, ReceiveBankingInfo receiveBankingInfo) {
-        this.id = id;
-        this.claimDate = claimDate;
-        this.insuredPeople = insuredPeople;
-        this.cardNumber = cardNumber;
-        this.examDate = examDate;
-        this.documents = documents;
-        this.claimAmount = claimAmount;
-        this.receiveBankingInfo = receiveBankingInfo;
-    }
-
-    public Claim(String id, Date claimDate, String insuredPeople, String cardNumber, Date examDate, double claimAmount, String status) {
+    public Claim(String id, Date claimDate, String insuredPeople, String cardNumber, Date examDate, double claimAmount,String status, ReceiveBankingInfo receiveBankingInfo) {
         this.id = id;
         this.claimDate = claimDate;
         this.insuredPeople = insuredPeople;
@@ -31,7 +20,10 @@ public class Claim {
         this.examDate = examDate;
         this.claimAmount = claimAmount;
         this.status= status;
+        this.receiveBankingInfo = receiveBankingInfo;
     }
+
+
 
     public Claim() {
         this.id = "null";
@@ -114,5 +106,20 @@ public class Claim {
 
     public void setStatus(String status) {
         this.status = status;
+    }
+
+    @Override
+    public String toString() {
+        return "Claim{" +
+                "id='" + id + '\'' +
+                ", claimDate=" + claimDate +
+                ", insuredPeople='" + insuredPeople + '\'' +
+                ", cardNumber='" + cardNumber + '\'' +
+                ", examDate=" + examDate +
+                ", documents=" + documents +
+                ", status='" + status + '\'' +
+                ", claimAmount=" + claimAmount +
+                ", receiveBankingInfo=" + receiveBankingInfo +
+                '}';
     }
 }

@@ -38,4 +38,13 @@ public class ReceiveBankingInfo {
     public void setAccountNumber(String accountNumber) {
         this.accountNumber = accountNumber;
     }
+
+    @Override
+    public String toString() {
+        return "ReceiveBankingInfo{" +
+                "bankName='" + bankName + '\'' +
+                ", accountName='" + accountName + '\'' +
+                ", accountNumber='" + accountNumber + '\'' +
+                '}';
+    }
 }

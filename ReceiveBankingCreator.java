@@ -17,7 +17,10 @@ public class ReceiveBankingCreator {
         String bankName = data.get(ReceiveBankingView.BANK_NAME);
         String accountNumber = data.get(ReceiveBankingView.ACCOUNT_NUMBER);
         String accountName = data.get(ReceiveBankingView.ACCOUNT_NAME);
-        receiveBankingInfo= new ReceiveBankingInfo(bankName,accountName,accountNumber);
+        receiveBankingInfo.setBankName(bankName);
+        receiveBankingInfo.setAccountNumber(accountNumber);
+        receiveBankingInfo.setAccountName(accountName);
     }
+
 
 }

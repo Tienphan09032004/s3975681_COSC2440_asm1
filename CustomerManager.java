@@ -1,23 +1,23 @@
 import java.util.HashSet;
 
 public class CustomerManager {
-    private HashSet<Customer> customerList;
+    private final HashSet<Customer> customers;
 
-    public CustomerManager(HashSet<Customer> customerList) {
-        this.customerList = customerList;
+    public CustomerManager(HashSet<Customer> customers) {
+        this.customers = customers;
     }
 
-    public CustomerManager() {
-        this.customerList= new HashSet<>();
-    }
 
     public void addCustomer(Customer customer) {
-        customerList.add(customer);
+        customers.add(customer);
     }
-    @Override
-    public String toString() {
-        return "CustomerManager{" +
-                "customerList=" + customerList +
-                '}';
+
+    public HashSet<Customer> getCustomers() {
+        return customers;
+    }
+
+    public Customer findCustomerById(String id) {
+        CustomerIterator customerIterator = new CustomerIterator(customers.iterator());
+        return customerIterator.findCustomerById(id);
     }
 }

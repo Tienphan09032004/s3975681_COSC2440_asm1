@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.Map;
 import java.util.Scanner;
@@ -13,27 +14,48 @@ public class ClaimCreator {
 
     DateParser dateParser= new DateParser();
     public void createClaim() {
-        String answer = "Y";
-        Scanner scanner = new Scanner(System.in);
-        while (answer.equalsIgnoreCase("Y")) {
+
+        Scanner scanner = DataInput.getDataInput().getScanner();
+
             Map<String, String> data = view.displayNewClaimForm();
             String id = data.get(ClaimView.CLAIM_ID);
             String insured_people = data.get(ClaimView.INSURED_PEOPLE);
             double claim_amount = Double.parseDouble(data.get(ClaimView.CLAIM_AMOUNT));
-            Date claim_date = dateParser.parseDate(data.get(ClaimView.CLAIM_DATE));
+            Date claim_date = null;
+            while (claim_date == null) {
+                String claimDateStr = data.get(ClaimView.CLAIM_DATE);
+                claim_date = dateParser.parseDate(claimDateStr);
+                if (claim_date == null) {
+                    System.out.println("Invalid claim date format. Please enter date in one of the supported formats.");
+                    System.out.print("Enter claim date (YYYY-MM-DD): ");
+                    claimDateStr = scanner.nextLine();
+                    data.put(ClaimView.CLAIM_DATE, claimDateStr);
+                }
+            }
             String status = data.get(ClaimView.STATUS);
             String card_number = data.get(ClaimView.CARD_NUMBER);
-            Date exam_date = dateParser.parseDate(data.get(ClaimView.EXAM_DATE));
-            if (claim_date != null && exam_date != null) {
-                claim = new Claim(id, claim_date, insured_people, card_number, exam_date, claim_amount, status);
-                view.display(claim);
-            } else {
-                System.out.println("Invalid date format. Please enter dates in YYYY-MM-DD format.");
+            Date exam_date = null;
+            while (exam_date == null) {
+                String exam_dateStr = data.get(ClaimView.EXAM_DATE);
+                exam_date = dateParser.parseDate(exam_dateStr);
+                if (exam_date == null) {
+                    System.out.println("Invalid claim date format. Please enter date in one of the supported formats.");
+                    System.out.print("Enter claim date (YYYY-MM-DD): ");
+                    exam_dateStr = scanner.nextLine();
+                    data.put(ClaimView.EXAM_DATE, exam_dateStr);
+                }
             }
-            System.out.println("Continue? (Y/N)");
-            answer = scanner.nextLine();
-        }
+            ReceiveBankingInfo receiveBankingInfo= new ReceiveBankingInfo();
+            ReceiveBankingViewText receiveBankingViewText= new ReceiveBankingViewText();
+            ReceiveBankingCreator receiveBankingCreator = new ReceiveBankingCreator(receiveBankingInfo ,receiveBankingViewText);
+            receiveBankingCreator.createBankingInfo();
+            claim = new Claim(id,claim_date,insured_people,card_number,exam_date, claim_amount,status,receiveBankingInfo);
+            view.display(claim);
+            receiveBankingViewText.display(receiveBankingInfo);
+
+
     }
+
 
 
 }

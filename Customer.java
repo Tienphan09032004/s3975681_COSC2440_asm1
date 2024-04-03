@@ -10,6 +10,7 @@ public abstract class Customer {
     public Customer(String id, String fullName) {
         this.id = id;
         this.fullName = fullName;
+        this.claims = new ArrayList<>();
     }
 
     public String getId() {
@@ -27,22 +28,32 @@ public abstract class Customer {
     public ArrayList<Claim> getClaims() {
         return claims;
     }
+
+    public void addClaim(Claim claim) {
+        claims.add(claim);
+    }
 }
-class CardHolder extends Customer{
-    private ArrayList<Independent> independents;
+class CardHolder extends Customer {
 
 
     public CardHolder(String id, String fullName) {
         super(id, fullName);
+
     }
+
+
+
 }
 
-class Independent extends Customer{
-    private CardHolder cardHolder;
+class Independent extends Customer {
 
 
     public Independent(String id, String fullName) {
         super(id, fullName);
+
     }
+
+
 }
+
 
