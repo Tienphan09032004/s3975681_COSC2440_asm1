@@ -3,6 +3,6 @@ public class Main {
 
 
         ClaimCreator controller = new ClaimCreator(new Claim(), new ClaimViewText());
-        controller.createCustomer();
+
     }
 }

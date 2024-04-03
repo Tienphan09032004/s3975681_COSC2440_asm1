@@ -7,7 +7,7 @@ public abstract class ClaimView {
     public static final String INSURED_PEOPLE = "INSURED_PEOPLE";
     public static final String CARD_NUMBER = "CARD_NUMBER";
     public static final String STATUS = "STATUS";
-    public static final String CLAIM_DATE = "0000/00/00";
+    public static final String CLAIM_DATE = "0000-00-00";
     public static final String CLAIM_AMOUNT = "0";
     public static final String EXAM_DATE = "0000/00/00";
 
