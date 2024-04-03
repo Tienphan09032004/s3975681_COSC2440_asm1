@@ -33,6 +33,17 @@ public class Claim {
         this.status= status;
     }
 
+    public Claim() {
+        this.id = "null";
+        this.claimDate = null;
+        this.insuredPeople = "null";
+        this.cardNumber = "null";
+        this.examDate = null;
+        this.documents = null;
+        this.claimAmount = 0;
+        this.receiveBankingInfo = null;
+    }
+
     public String getId() {
         return id;
     }
