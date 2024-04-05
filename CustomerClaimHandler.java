@@ -24,7 +24,7 @@ public class CustomerClaimHandler {
         while (true) {
             Claim claim = new Claim();
             ClaimCreator claimCreator = new ClaimCreator(claim, new ClaimViewText());
-            claimCreator.createClaim();
+            claim=claimCreator.createClaim();
             claims.add(claim);
 
             System.out.println("Do you want to add another claim? (yes/no): ");

@@ -30,7 +30,7 @@ public abstract class Customer {
     }
 
     public void addClaim(Claim claim) {
-        claims.add(claim);
+        this.claims.add(claim);
     }
 }
 class CardHolder extends Customer {

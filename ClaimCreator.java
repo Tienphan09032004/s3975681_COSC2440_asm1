@@ -1,4 +1,3 @@
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.Map;
 import java.util.Scanner;
@@ -13,10 +12,9 @@ public class ClaimCreator {
     }
 
     DateParser dateParser= new DateParser();
-    public void createClaim() {
+    public Claim createClaim() {
 
         Scanner scanner = DataInput.getDataInput().getScanner();
-
             Map<String, String> data = view.displayNewClaimForm();
             String id = data.get(ClaimView.CLAIM_ID);
             String insured_people = data.get(ClaimView.INSURED_PEOPLE);
@@ -49,9 +47,7 @@ public class ClaimCreator {
             ReceiveBankingViewText receiveBankingViewText= new ReceiveBankingViewText();
             ReceiveBankingCreator receiveBankingCreator = new ReceiveBankingCreator(receiveBankingInfo ,receiveBankingViewText);
             receiveBankingCreator.createBankingInfo();
-            claim = new Claim(id,claim_date,insured_people,card_number,exam_date, claim_amount,status,receiveBankingInfo);
-            view.display(claim);
-            receiveBankingViewText.display(receiveBankingInfo);
+            return new Claim(id,claim_date,insured_people,card_number,exam_date, claim_amount,status,receiveBankingInfo);
 
 
     }
