@@ -9,7 +9,17 @@ public class CustomerManager {
 
 
     public void addCustomer(Customer customer) {
-        customers.add(customer);
+        boolean isDuplicate = false;
+        for (Customer existingCustomer : customers) {
+            if (existingCustomer.getId().equals(customer.getId())) {
+                System.out.println("Customer with ID " + customer.getId() + " already exists. Cannot add duplicate customer.");
+                isDuplicate = true;
+                break;
+            }
+        }
+        if (!isDuplicate) {
+            customers.add(customer);
+        }
     }
 
     public HashSet<Customer> getCustomers() {
@@ -23,12 +33,15 @@ public class CustomerManager {
 
     public Customer findCustomerByClaim(Claim claim) {
         for (Customer customer : customers) {
-            if (customer.getClaims().contains(claim)) {
-                return customer;
+            for (Claim customerClaim : customer.getClaims().getClaims()) {
+                if (customerClaim.equals(claim)) {
+                    return customer;
+                }
             }
         }
         return null;
     }
+
 
     public void updateCustomer(Customer customer) {
         // Check if a customer with the same ID already exists
@@ -41,6 +54,15 @@ public class CustomerManager {
 
         // Add the new customer
         customers.add(customer);
+    }
+
+    public Customer findByFullName(String fullName) {
+        for (Customer customer : customers) {
+            if (customer.getFullName().equals(fullName)) {
+                return customer;
+            }
+        }
+        return null;
     }
 
     @Override

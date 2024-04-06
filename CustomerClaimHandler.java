@@ -1,7 +1,4 @@
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-import java.util.Scanner;
+import java.util.*;
 
 public class CustomerClaimHandler  implements ClaimProcessManager {
     private final CustomerManager customerManager;
@@ -25,25 +22,29 @@ public class CustomerClaimHandler  implements ClaimProcessManager {
             return;
         }
 
-        List<Claim> claims = new ArrayList<>();
+        ClaimManager claimManager1 = customer.getClaims();
         while (true) {
             Claim claim = new Claim();
             ClaimCreator claimCreator = new ClaimCreator(claim, new ClaimViewText());
-            claim=claimCreator.createClaim();
-            claims.add(claim);
+            claim = claimCreator.createClaim();
+
+
+            if (claimManager.findClaimById(claim.getId()) != null) {
+                System.out.println("Claim with ID " + claim.getId() + " already exists. Please enter a different ID.");
+                continue;
+            }
             claimManager.addClaim(claim);
+            claimManager1.addClaim(claim);
+
             System.out.println("Do you want to add another claim? (yes/no): ");
             String choice = scanner.nextLine().trim().toLowerCase();
             if (!choice.equals("yes")) {
                 break;
             }
         }
-
-
-        for (Claim claim : claims) {
-            customer.addClaim(claim);
-        }
+        
     }
+
     @Override
     public void delete() {
         Scanner scanner = DataInput.getDataInput().getScanner();

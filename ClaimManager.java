@@ -5,21 +5,31 @@ import java.util.List;
 public class ClaimManager {
     private final HashSet<Claim> claims;
 
+    public ClaimManager() {
+        this.claims = new HashSet<>();
+    }
+
     public ClaimManager(HashSet<Claim> claims) {
         this.claims = claims;
     }
 
 
     public void addClaim(Claim claim) {
-        claims.add(claim);
+        if (!claims.contains(claim)) {
+            claims.add(claim);
+        } else {
+            System.out.println("Claim with ID " + claim.getId() + " already exists. Cannot add duplicate claim.");
+        }
     }
+
 
     public HashSet<Claim> getClaims() {
         return claims;
     }
 
-    public void deleteClaim(Claim claim) {
+    public boolean deleteClaim(Claim claim) {
         claims.remove(claim);
+        return true;
     }
 
     public Claim findClaimById(String id) {
