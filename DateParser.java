@@ -6,10 +6,7 @@ import java.util.Date;
 
 public class DateParser {
     private static final String[] DATE_FORMATS = {
-            "yyyy-MM-dd",
-            "MM/dd/yyyy",
-            "dd/MM/yyyy",
-            "yyyy/MM/dd"
+            "yyyy-MM-dd"
     };
 
     public Date parseDate(String dateString) {

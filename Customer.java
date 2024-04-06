@@ -1,16 +1,17 @@
 import java.util.ArrayList;
+import java.util.HashSet;
 
 public abstract class Customer {
     private String id;
     private String fullName;
 
     private InsuranceCard insuranceCard;
-    private ArrayList<Claim> claims;
+    private HashSet<Claim> claims;
 
     public Customer(String id, String fullName) {
         this.id = id;
         this.fullName = fullName;
-        this.claims = new ArrayList<>();
+        this.claims = new HashSet<>();
     }
 
     public String getId() {
@@ -25,12 +26,30 @@ public abstract class Customer {
         return insuranceCard;
     }
 
-    public ArrayList<Claim> getClaims() {
+    public HashSet<Claim> getClaims() {
         return claims;
     }
 
     public void addClaim(Claim claim) {
         this.claims.add(claim);
+    }
+
+    public HashSet<Claim> getAllClaims() {
+        return claims;
+    }
+
+    public boolean removeClaim(Claim claim) {
+        return this.claims.remove(claim);
+    }
+
+    @Override
+    public String toString() {
+        return "Customer{" +
+                "id='" + id + '\'' +
+                ", fullName='" + fullName + '\'' +
+                ", insuranceCard=" + insuranceCard +
+                ", claims=" + claims +
+                '}';
     }
 }
 class CardHolder extends Customer {

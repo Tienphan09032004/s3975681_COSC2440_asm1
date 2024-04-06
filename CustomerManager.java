@@ -20,4 +20,33 @@ public class CustomerManager {
         CustomerIterator customerIterator = new CustomerIterator(customers.iterator());
         return customerIterator.findCustomerById(id);
     }
+
+    public Customer findCustomerByClaim(Claim claim) {
+        for (Customer customer : customers) {
+            if (customer.getClaims().contains(claim)) {
+                return customer;
+            }
+        }
+        return null;
+    }
+
+    public void updateCustomer(Customer customer) {
+        // Check if a customer with the same ID already exists
+        Customer existingCustomer = findCustomerById(customer.getId());
+
+        // If an existing customer is found, remove it
+        if (existingCustomer != null) {
+            customers.remove(existingCustomer);
+        }
+
+        // Add the new customer
+        customers.add(customer);
+    }
+
+    @Override
+    public String toString() {
+        return "CustomerManager{" +
+                "customers=" + customers +
+                '}';
+    }
 }
