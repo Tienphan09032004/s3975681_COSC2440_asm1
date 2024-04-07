@@ -8,7 +8,7 @@ public class InsuranceCard {
 
     public InsuranceCard(String cardNumber, String cardHolder, String policyOwner, Date expirationDate) {
         if (!isValidCardNumber(cardNumber)) {
-            throw new IllegalArgumentException("Card number must contain exactly 10 digits.");
+            throw new IllegalArgumentException("Card number must contain exactly 7 digits.");
         }
         this.cardNumber = cardNumber;
         this.cardHolder = cardHolder;
@@ -22,7 +22,7 @@ public class InsuranceCard {
 
     public void setCardNumber(String cardNumber) {
         if (!isValidCardNumber(cardNumber)) {
-            throw new IllegalArgumentException("Card number must contain exactly 10 digits.");
+            throw new IllegalArgumentException("Card number must contain exactly 7 digits.");
         }
         this.cardNumber = cardNumber;
     }
@@ -52,7 +52,7 @@ public class InsuranceCard {
     }
 
     private boolean isValidCardNumber(String cardNumber) {
-        return cardNumber != null && cardNumber.matches("\\d{10}");
+        return cardNumber != null && cardNumber.matches("\\d{7}");
     }
 
     @Override

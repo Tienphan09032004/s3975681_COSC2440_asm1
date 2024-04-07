@@ -18,10 +18,7 @@ public class CustomerIterator implements Iterator<Customer> {
     }
 
     // Optional: Implement the remove method if needed
-    @Override
-    public void remove() {
-        iterator.remove();
-    }
+
 
     // Custom method to find a customer by ID
     public Customer findCustomerById(String id) {

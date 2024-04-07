@@ -34,7 +34,7 @@ public class ClaimManager {
 
     public Claim findClaimById(String id) {
         ClaimIterator claimIterator = new ClaimIterator(claims.iterator());
-        return claimIterator.findCustomerById(id);
+        return claimIterator.findClaimById(id);
     }
 
     public List<Claim> getAllClaims() {

@@ -2,7 +2,7 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Objects;
 
-public abstract class Customer {
+public  class Customer {
     private String id;
     private String fullName;
 

@@ -25,7 +25,7 @@ public class CustomerClaimHandler implements ClaimProcessManager {
         ClaimManager claimManager1 = customer.getClaims();
         while (true) {
             Claim claim = new Claim();
-            ClaimCreator claimCreator = new ClaimCreator(claim, new ClaimViewText());
+            ClaimCreator claimCreator = new ClaimCreator(claim, new ClaimViewText(), new Filewriter());
             claim = claimCreator.createClaim();
 
 

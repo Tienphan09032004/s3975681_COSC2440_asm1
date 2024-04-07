@@ -7,9 +7,12 @@ public class ClaimCreator {
     Claim claim;
     ClaimView view;
 
-    public ClaimCreator(Claim claim, ClaimView view) {
+    Filewriter filewriter = new Filewriter();
+
+    public ClaimCreator(Claim claim, ClaimView view, Filewriter filewriter) {
         this.claim = claim;
         this.view = view;
+        this.filewriter= filewriter;
     }
 
     DateParser dateParser= new DateParser();
@@ -48,8 +51,8 @@ public class ClaimCreator {
             ReceiveBankingViewText receiveBankingViewText= new ReceiveBankingViewText();
             ReceiveBankingCreator receiveBankingCreator = new ReceiveBankingCreator(receiveBankingInfo ,receiveBankingViewText);
             receiveBankingCreator.createBankingInfo();
+            filewriter.writeClaimToFile(new Claim(id, claim_date, insured_people, card_number, exam_date, claim_amount, status, receiveBankingInfo, documents));
             return new Claim(id,claim_date,insured_people,card_number,exam_date, claim_amount,status,receiveBankingInfo, documents);
-
 
     }
 

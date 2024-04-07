@@ -19,7 +19,7 @@ public class ClaimIterator implements Iterator<Claim> {
 
 
 
-    public Claim findCustomerById(String id) {
+    public Claim findClaimById(String id) {
         while (iterator.hasNext()) {
             Claim claim = iterator.next();
             if (claim.getId().equals(id) ) {

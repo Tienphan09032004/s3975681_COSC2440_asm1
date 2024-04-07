@@ -76,8 +76,8 @@ public class Claim {
         if (isValidCardNumber(cardNumber)) {
             this.cardNumber = cardNumber;
         } else {
-            System.out.println("Invalid card number format. Please enter again (10 digits):");
-            setCardNumber(scanner.nextLine());
+            System.out.println("Invalid card number format. Please enter again (7 digits):");
+
         }
     }
 
@@ -143,12 +143,12 @@ public class Claim {
 
     private boolean isValidCardNumber(String cardNumber) {
 
-        return cardNumber != null && cardNumber.matches("\\d{10}");
+        return cardNumber != null && cardNumber.matches("c-\\d{7}");
     }
 
     private boolean isValidDocuments(ArrayList<String> documents) {
         for (String document : documents) {
-            if (!document.matches("f-\\d{10}_\\d{10}_\\w+\\.pdf")) {
+            if (!document.matches("f-\\d{10}_\\d{7}_\\w+\\.pdf")) {
                 return false;
             }
         }
