@@ -42,7 +42,9 @@ public class ClaimManager {
     }
 
     public void updateClaim(Claim updatedClaim) {
-        for (Claim claim : claims) {
+        ClaimIterator claimIterator = new ClaimIterator(claims.iterator());
+        Claim claim;
+        while ((claim = claimIterator.next()) != null) {
             if (claim.getId().equals(updatedClaim.getId())) {
                 claim.setClaimDate(updatedClaim.getClaimDate());
                 claim.setInsuredPeople(updatedClaim.getInsuredPeople());
@@ -56,6 +58,7 @@ public class ClaimManager {
             }
         }
     }
+
     @Override
     public String toString() {
         return "ClaimManager{" +

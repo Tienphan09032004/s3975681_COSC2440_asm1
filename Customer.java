@@ -47,6 +47,22 @@ public abstract class Customer {
         return this.claims.deleteClaim(claim);
     }
 
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public void setFullName(String fullName) {
+        this.fullName = fullName;
+    }
+
+    public void setInsuranceCard(InsuranceCard insuranceCard) {
+        this.insuranceCard = insuranceCard;
+    }
+
+    public void setClaims(ClaimManager claims) {
+        this.claims = claims;
+    }
+
     @Override
     public int hashCode() {
         return Objects.hash(id);
@@ -73,14 +89,50 @@ public abstract class Customer {
 
 class CardHolder extends Customer {
 
+    HashSet<Independent> independents;
+
     public CardHolder(String id, String fullName) {
         super(id, fullName);
     }
+
+    public CardHolder(String id, String fullName, HashSet<Independent> independents) {
+        super(id, fullName);
+        this.independents= independents;
+    }
+
+    public HashSet<Independent> getIndependents() {
+        return independents;
+    }
+
+    public void setIndependents(HashSet<Independent> independents) {
+        this.independents = independents;
+    }
+
+    public void addIndependents(Independent independent) {
+        this.independents.add(independent);
+    }
+
+
 }
 
 class Independent extends Customer {
 
+    CardHolder cardHolder;
+
     public Independent(String id, String fullName) {
         super(id, fullName);
+    }
+
+    public Independent(String id, String fullName, CardHolder cardHolder) {
+        super(id, fullName);
+        this.cardHolder=cardHolder;
+    }
+
+    public CardHolder getCardHolder() {
+        return cardHolder;
+    }
+
+    public void setCardHolder(CardHolder cardHolder) {
+        this.cardHolder = cardHolder;
     }
 }

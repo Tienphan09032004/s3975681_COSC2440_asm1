@@ -1,24 +1,30 @@
 import java.util.Date;
 
 public class InsuranceCard {
-    private String id;
+    private String cardNumber;
     private String cardHolder;
-    private String policyHolder;
-    private Date expiredDate;
+    private String policyOwner;
+    private Date expirationDate;
 
-    public InsuranceCard(String id, String cardHolder, String policyHolder, Date expiredDate) {
-        this.id = id;
+    public InsuranceCard(String cardNumber, String cardHolder, String policyOwner, Date expirationDate) {
+        if (!isValidCardNumber(cardNumber)) {
+            throw new IllegalArgumentException("Card number must contain exactly 10 digits.");
+        }
+        this.cardNumber = cardNumber;
         this.cardHolder = cardHolder;
-        this.policyHolder = policyHolder;
-        this.expiredDate = expiredDate;
+        this.policyOwner = policyOwner;
+        this.expirationDate = expirationDate;
     }
 
-    public String getId() {
-        return id;
+    public String getCardNumber() {
+        return cardNumber;
     }
 
-    public void setId(String id) {
-        this.id = id;
+    public void setCardNumber(String cardNumber) {
+        if (!isValidCardNumber(cardNumber)) {
+            throw new IllegalArgumentException("Card number must contain exactly 10 digits.");
+        }
+        this.cardNumber = cardNumber;
     }
 
     public String getCardHolder() {
@@ -29,29 +35,33 @@ public class InsuranceCard {
         this.cardHolder = cardHolder;
     }
 
-    public String getPolicyHolder() {
-        return policyHolder;
+    public String getPolicyOwner() {
+        return policyOwner;
     }
 
-    public void setPolicyHolder(String policyHolder) {
-        this.policyHolder = policyHolder;
+    public void setPolicyOwner(String policyOwner) {
+        this.policyOwner = policyOwner;
     }
 
-    public Date getExpiredDate() {
-        return expiredDate;
+    public Date getExpirationDate() {
+        return expirationDate;
     }
 
-    public void setExpiredDate(Date expiredDate) {
-        this.expiredDate = expiredDate;
+    public void setExpirationDate(Date expirationDate) {
+        this.expirationDate = expirationDate;
+    }
+
+    private boolean isValidCardNumber(String cardNumber) {
+        return cardNumber != null && cardNumber.matches("\\d{10}");
     }
 
     @Override
     public String toString() {
         return "InsuranceCard{" +
-                "id='" + id + '\'' +
+                "cardNumber='" + cardNumber + '\'' +
                 ", cardHolder='" + cardHolder + '\'' +
-                ", policyHolder='" + policyHolder + '\'' +
-                ", expiredDate=" + expiredDate +
+                ", policyOwner='" + policyOwner + '\'' +
+                ", expirationDate=" + expirationDate +
                 '}';
     }
 }

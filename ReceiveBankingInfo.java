@@ -45,6 +45,6 @@ public class ReceiveBankingInfo {
                 "bankName='" + bankName + '\'' +
                 ", accountName='" + accountName + '\'' +
                 ", accountNumber='" + accountNumber + '\'' +
-                '}';
+                '}'+'\'';
     }
 }

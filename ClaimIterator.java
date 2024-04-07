@@ -17,11 +17,7 @@ public class ClaimIterator implements Iterator<Claim> {
         return iterator.next();
     }
 
-    // Optional: Implement the remove method if needed
-    @Override
-    public void remove() {
-        iterator.remove();
-    }
+
 
     public Claim findCustomerById(String id) {
         while (iterator.hasNext()) {

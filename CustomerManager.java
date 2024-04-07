@@ -7,6 +7,9 @@ public class CustomerManager {
         this.customers = customers;
     }
 
+    public CustomerManager() {
+        this.customers= new HashSet<Customer> ();
+    }
 
     public void addCustomer(Customer customer) {
         boolean isDuplicate = false;
@@ -32,8 +35,12 @@ public class CustomerManager {
     }
 
     public Customer findCustomerByClaim(Claim claim) {
-        for (Customer customer : customers) {
-            for (Claim customerClaim : customer.getClaims().getClaims()) {
+        CustomerIterator customerIterator = new CustomerIterator(customers.iterator());
+        Customer customer;
+        while ((customer = customerIterator.next()) != null) {
+            ClaimIterator claimIterator = new ClaimIterator(customer.getClaims().getClaims().iterator());
+            Claim customerClaim;
+            while ((customerClaim = claimIterator.next()) != null) {
                 if (customerClaim.equals(claim)) {
                     return customer;
                 }
@@ -41,6 +48,7 @@ public class CustomerManager {
         }
         return null;
     }
+
 
 
     public void updateCustomer(Customer customer) {
@@ -57,13 +65,16 @@ public class CustomerManager {
     }
 
     public Customer findByFullName(String fullName) {
-        for (Customer customer : customers) {
+        CustomerIterator customerIterator = new CustomerIterator(customers.iterator());
+        Customer customer;
+        while ((customer = customerIterator.next()) != null) {
             if (customer.getFullName().equals(fullName)) {
                 return customer;
             }
         }
         return null;
     }
+
 
     @Override
     public String toString() {

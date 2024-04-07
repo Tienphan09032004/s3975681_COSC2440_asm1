@@ -148,7 +148,7 @@ public class Claim {
 
     private boolean isValidDocuments(ArrayList<String> documents) {
         for (String document : documents) {
-            if (!document.matches(id+"_"+cardNumber+"_\\w+\\.pdf")) {
+            if (!document.matches("f-\\d{10}_\\d{10}_\\w+\\.pdf")) {
                 return false;
             }
         }
